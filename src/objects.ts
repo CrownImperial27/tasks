@@ -39,7 +39,7 @@ export function isCorrect(question: Question, answer: string): boolean {
 }
 
 /**
- * Consumes a question and a potential `answer`, and returns whether or not
+ * Consumes a question ands a potential `answer`, and returns whether or not
  * the `answer` is valid (but not necessarily correct). For a `short_answer_question`,
  * any answer is valid. But for a `multiple_choice_question`, the `answer` must
  * be exactly one of the options.
