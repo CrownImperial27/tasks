@@ -17,7 +17,17 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * `expected`, and an empty array for its `options`.
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    return [];
+    return questions.filter(
+        ({
+            body,
+            expected,
+            options,
+        }: {
+            body: string;
+            expected: string;
+            options: string[];
+        }): boolean => body !== "" || expected !== "" || options.length !== 0,
+    );
 }
 
 /***
@@ -28,7 +38,11 @@ export function findQuestion(
     questions: Question[],
     id: number,
 ): Question | null {
-    return null;
+    return (
+        questions.find(
+            ({ id: currID }: { id: number }): Boolean => currID === id,
+        ) ?? null
+    );
 }
 
 /**
@@ -36,7 +50,9 @@ export function findQuestion(
  * with the given `id`.
  */
 export function removeQuestion(questions: Question[], id: number): Question[] {
-    return [];
+    return questions.filter(
+        ({ id: currId }: { id: number }): Boolean => currId !== id,
+    );
 }
 
 /***
@@ -44,21 +60,28 @@ export function removeQuestion(questions: Question[], id: number): Question[] {
  * questions, as an array.
  */
 export function getNames(questions: Question[]): string[] {
-    return [];
+    return questions.reduce((newArr: string[], question: Question) => {
+        newArr.push(question.name);
+        return newArr;
+    }, []);
 }
 
 /***
  * Consumes an array of questions and returns the sum total of all their points added together.
  */
 export function sumPoints(questions: Question[]): number {
-    return 0;
+    return questions.reduce((acc: number, question: Question): number => {
+        return (acc += question.points);
+    }, 0);
 }
 
 /***
  * Consumes an array of questions and returns the sum total of the PUBLISHED questions.
  */
 export function sumPublishedPoints(questions: Question[]): number {
-    return 0;
+    return questions.reduce((acc: number, question: Question): number => {
+        return (acc += question.published ? question.points : 0);
+    }, 0);
 }
 
 /***
