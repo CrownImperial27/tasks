@@ -6,6 +6,7 @@ import { StartAttempt } from "./components/StartAttempt";
 import { TwoDice } from "./components/TwoDice";
 import { CycleHoliday } from "./components/CycleHoliday";
 import { Counter } from "./components/Counter";
+import { Button } from "react-bootstrap";
 
 function App(): React.JSX.Element {
     return (
@@ -21,6 +22,24 @@ function App(): React.JSX.Element {
                     }}
                 ></div>
             </header>
+            <p>
+                Edit <code>src/App.tsx</code> and save. This page will
+                automatically reload. Hello World
+            </p>
+            <img alt="ooh lala "></img>
+            <br></br>
+            <Button
+                onClick={() => {
+                    console.log("Hello World!");
+                }}
+            >
+                Log Hello World
+            </Button>
+            <ol className="ordered-list">
+                <li>First thing</li>
+                <li>Second thing</li>
+                <li>A third item</li>
+            </ol>
             <hr></hr>
             <Counter></Counter>
             <hr />
